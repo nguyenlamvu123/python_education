@@ -1,0 +1,14 @@
+https://vndataproduct.org/huong-dan-xay-dung-chatbot-truy-van-du-lieu-tren-telegram-bang-python/  # get-started
+https://stackoverflow.com/questions/77365303/telegram-bot-updater-init-missing-1-required-positional-argument-updat
+
+https://docs.python-telegram-bot.org/en/stable/examples.html
+https://github.com/python-telegram-bot/python-telegram-bot/wiki/Extensions---Your-first-Bot
+https://stackoverflow.com/questions/61868770/tegram-bot-api-token-format
+
+https://stackoverflow.com/questions/37338101/how-to-add-a-bot-to-a-telegram-group?rq=3  # add a bot to a Telegram Group
+
+https://docs.pyrogram.org/api/methods/get_chat_history#pyrogram.Client.get_chat_history  # pyrogram 
+
+https://github.com/amiryousefi/telegram-analysis/blob/master/ChannelMessages.py  # telethon
+https://www.youtube.com/watch?v=aU1p-F7gDo4  # telethon
+https://www.youtube.com/watch?v=aoJ-LhzqsdQ  # telethon  # ok

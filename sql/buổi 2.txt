@@ -1,0 +1,26 @@
+các kiến thức đã học trên lớp:
+	select ... from ...
+	nối chuỗi
+	distinct
+	giới hạn kết quả `top`
+	so khớp chuỗi `like`
+	null là gì
+	lọc chuỗi theo điều kiện null
+	between
+	max, min, count, avg, sum
+	group by
+	order by
+
+bài tập về nhà:
+	cách nộp bài: viết ra file txt (hoặc định dạng khác, tùy chọn) từng dòng lệnh, lưu lại rồi nộp
+	https://www.hackerrank.com/challenges/name-of-employees/problem?isFullScreen=true
+		cấu trúc và nội dung database được miêu tả đầy đủ trong link 
+		yêu cầu: Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order. (viết câu lệnh truy vấn danh sách tên của tất cả công nhân sắp xếp theo bảng chữ cái)
+			gợi ý: select ... from ... order by ...;  -- học viên có thể kiểm tra kết quả đúng sai của câu lệnh trực tiếp trong link
+		yêu cầu bổ sung: (học viên có thể kiểm tra đầu ra của câu lệnh trực tiếp trong link bằng cách nhấn vào "Run Code" rồi xem kết quả trong khung "Your Output (stdout)")
+			viết câu lệnh truy vấn công nhân có tên bắt đầu bằng "Bo"
+			viết câu lệnh truy vấn công nhân có tên kết thúc bằng "ie" và mức lương nằm trong khoảng 1000 đến 2000
+			viết câu lệnh truy vấn số lượng công nhân có thời gian làm (số tháng) bằng nhau (ví dụ: có 8 đồng chí cùng làm 11 tháng, 9 đồng chí cùng làm 22 tháng)
+	https://www.hackerrank.com/challenges/earnings-of-employees/problem
+		cấu trúc và nội dung database được miêu tả đầy đủ trong link
+		yêu cầu: viết câu lệnh truy vấn các mức thu nhập (months * salary) và số đồng chí có cùng từng mức thu nhập (thêm câu lệnh order by rồi lấy top 1 là hoàn thành yêu cầu trong link) (gợi ý: select (months*salary), count( ... ) from ... group by ...)

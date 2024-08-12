@@ -1,0 +1,39 @@
+các kiến thức đã học trên lớp:
+	having ...
+	join ... on ...
+	union ...
+	case ... when ... then ...
+	
+
+bài tập về nhà:
+	cách nộp bài: viết ra file txt (hoặc định dạng khác, tùy chọn) từng dòng lệnh, lưu lại rồi nộp
+	https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_join
+		1. truy vấn tất cả cột trong bảng Order sắp xếp theo CustomerID
+			gợi ý: SELECT ... FROM ... order by ...;
+		2. truy vấn tất cả cột trong bảng Order sắp xếp theo CustomerID, các bản ghi có giá trị CustomerID trong khoảng 50 đến 60
+			gợi ý: SELECT ... FROM ... where ... between ... and ... order by ...;
+		3. truy vấn tất cả cột trong bảng Customers sắp xếp theo CustomerID
+		4. truy vấn tất cả cột trong bảng Customers sắp xếp theo CustomerID, các bản ghi có giá trị CustomerID trong khoảng 50 đến 60
+			yêu cầu: viết theo cách khác, không dùng between
+		5. giải thích tại sao câu lệnh phía dưới sai:
+`SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+FROM Orders
+INNER JOIN Customers
+ON Orders.CustomerID=Customers.CustomerID where CustomerID between 50 and 60 order by CustomerID;
+`
+		câu lệnh đúng:
+`SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
+FROM Orders
+INNER JOIN Customers
+ON Orders.CustomerID=Customers.CustomerID where Customers.CustomerID between 50 and 60 order by Customers.CustomerID;
+`
+		6. chạy câu lệnh đúng phía trên trong khung 'SQL Statement', yêu cầu truy vấn thêm giá trị CustomerID
+			gợi ý:
+				thêm trường CustomerID vào mệnh đề select
+				các kết quả lấy ra có điều kiện `ON Orders.CustomerID=Customers.CustomerID` nên có thể lấy giá trị CustomerID của bất cứ bảng nào
+		7. câu lệnh ở mục 6 dùng `inner join` (mặc định của `join`), chạy lại nó trong khung 'SQL Statement' dùng left join, right join			
+			nhìn lại cấu trúc các bảng ở mục 2 và 4 (chú ý đến các bản ghi có giá trị CustomerID là 50, 53, 57 (các mục hiện trắng tương ứng với giá trị null)) để xác thực rằng: (https://kb.pavietnam.vn/join-trong-sql-server-phan-biet-va-su-dung.html)
+"LEFT OUTER JOIN (LEFT JOIN): Lấy toàn bộ các dòng dữ liệu ở table bên trái (trong mệnh đề from) và với những dòng dữ liệu tương ứng ở bảng bên phải CÓ giá trị MaHV ở bảng bên trái, nếu không có dữ liệu tương ứng bảng bên phải sẽ trả về kết quả null
+RIGHT OUTER JOIN (RIGHT JOIN): lấy toàn bộ các dòng dữ liệu ở table bên phải (trong mệnh đề join ... on) và với những dòng dữ liệu tương ứng ở bảng bên trái CÓ giá trị MaHV ở bảng bên phải, nếu không có dữ liệu tương ứng bảng bên trái sẽ trả về kết quả null"
+		8. truy vấn gộp tất cả các giá trị CustomerID của bảng Customers và các giá trị OrderID của bảng Orders, không lấy các giá trị lặp
+		9. truy vấn gộp tất cả các giá trị CustomerID của bảng Customers và các giá trị CustomerID của bảng Orders, lấy cả các giá trị lặp

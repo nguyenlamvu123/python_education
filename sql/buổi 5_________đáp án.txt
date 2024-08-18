@@ -1,0 +1,129 @@
+các kiến thức đã học trên lớp:
+--  SELECT TOP (1000) [MADV]
+--      ,[TENDV]
+--      ,[DONVITINH]
+--      ,[DONGIA]
+--  FROM [LAYLOIHOI_DB].[dbo].[DICH_VU_DI_KEM]
+
+--select tenkh from khach_hang where (tenkh like 'h%' or tenkh like 'n%' or tenkh like 'm%') and (len(tENKh) <= 20)
+--select tenkh from khach_hang where (LEFT(tenkh, 1) in ('H', 'N', 'M')) and (len(tENKh) <= 20)
+
+--select concat(str(GIAPHONG), 'k'), maphong from phong
+
+--select replace(TENKH, 'a', 'z') from khach_hang
+
+--select madatphong, maphong, month(ngaydat) from dat_phong
+
+--CREATE TABLE Employees (
+--  EmployeeID INT PRIMARY KEY,
+--  EmployeeName VARCHAR(255),
+--  ManagerID INT
+--);
+ 
+ --select EmployeeID, ManagerID from employees into #bngtamm scgdsf
+
+--INSERT INTO Employees (EmployeeID, EmployeeName, ManagerID)
+--VALUES (1, 'CEO', NULL),
+--       (2, 'VP of Sales', 1),
+--       (3, 'Sales Manager', 2),
+--       (4, 'Sales Representative', 3),
+--       (5, 'VP of Engineering', 1),
+--       (6, 'Engineering Manager', 5),
+--       (7, 'Software Engineer', 6);
+
+--SELECT EmployeeID, EmployeeName, ManagerID
+--FROM (
+--  SELECT EmployeeID, EmployeeName, ManagerID
+--  FROM Employees
+--  WHERE ManagerID IS NULL
+--  UNION ALL
+--  SELECT E.EmployeeID, E.EmployeeName, E.ManagerID
+--  FROM Employees AS E
+--) as c
+--ORDER BY EmployeeID;
+
+--CREATE TABLE #TEMP_TABLE
+--(
+--    Ma int IDENTITY PRIMARY KEY,
+--    Ten nvarchar(30) NOT NULL
+--)
+----Thêm dữ liệu vào bảng tạm
+--INSERT #TEMP_TABLE(Ten) VALUES(N'Tuấn')
+--INSERT #TEMP_TABLE(Ten) VALUES(N'Lan')
+
+CREATE TABLE ##TEMP_TABLE
+(
+    Ma int IDENTITY PRIMARY KEY,
+    Ten nvarchar(30) NOT NULL
+)
+--Thêm dữ liệu vào bảng tạm
+INSERT ##TEMP_TABLE(Ten) VALUES(N'Tuấn')
+INSERT ##TEMP_TABLE(Ten) VALUES(N'Lan')
+--Kiểm tra dữ liệu
+SELECT * FROM ##TEMP_TABLE
+ 
+	
+
+bài tập về nhà:
+	cách nộp bài: viết ra file txt (hoặc định dạng khác, tùy chọn) từng dòng lệnh, lưu lại rồi nộp
+	TRỢ GIẢNG GIỮ LẠI CÁC ĐÁP ÁN ĐỨNG SAU CHUỖI _________ ĐỂ CHỮA BÀI
+	chạy các câu lệnh sau để tạo database và đổ dữ liệu vào
+		create database giaoduc
+		use giaoduc
+
+		CREATE TABLE SINHVIEN (
+			id INT PRIMARY KEY,
+			ten VARCHAR(100),
+			tuoi int,
+			khoahoc VARCHAR(100),
+			hocphi int,
+		);
+
+		INSERT INTO SINHVIEN (id, ten, tuoi, khoahoc, hocphi)
+		VALUES
+			(1, 'Hoang', 21, 'CNTT', 4000000),
+			(2, 'Viet', 19, 'DTVT', 3000000),
+			(3, 'Thanh', 18, 'KTDN', 4000000),
+			(4, 'Nhan', 19, 'CK', 4500000),
+			(5, 'Huong', 20, 'TCNH', 5000000);
+	yêu cầu:
+		1. truy vấn id của các sinh viên có số học phí cần đóng trên 4000000 _________ SELECT ID FROM SINHVIEN WHERE HOCPHI > 4000000;
+		1.1. truy vấn tuổi, học phí của các sinh viên chứa chữ 'a' ở giữa tên _________ select tuoi, hocphi from sinhvien where ten like '%a%'
+			gợi ý: like '%a%'
+		1.2 truy vấn số lượng sinh viên theo từng độ tuổi _________ select tuoi, count(id) as soluong from sinhvien group by tuoi
+			gợi ý: group by tuoi
+		2. biến câu lệnh ở yêu cầu 1 thành 1 sub-queries, truy vấn tất cả thông tin của các sinh viên đó
+		gợi ý: where id in ([đáp_án_yêu_cầu_1])
+		_________ SELECT * 
+				FROM SINHVIEN 
+				WHERE ID IN (
+					SELECT ID FROM SINHVIEN WHERE HOCPHI > 4000000
+				);
+		2.1 biến câu lệnh ở yêu cầu 1 thành 1 bảng chứa dữ liệu tạm thời CTE-Common Table Expression, truy vấn tất cả thông tin của các sinh viên đó
+		gợi ý: with ctl (id) as ([đáp_án_yêu_cầu_1]) ... where id in (SELECT id FROM cte);
+		_________ with cte (id) as (SELECT ID FROM SINHVIEN WHERE HOCPHI > 4000000)
+				select * from sinhvien where id in (SELECT id FROM cte);
+		3. giải thích đầu ra của câu lệnh sau: (học viên tự chạy câu lệnh để lấy đầu ra) (chú ý đến kết quả của câu lệnh 1 và 1.1)
+			SELECT a.id, b.tuoi, a.hocphi + b.hocphi
+			     FROM (SELECT ID, hocphi FROM SINHVIEN WHERE HOCPHI > 4000000) as a, (select tuoi, hocphi from sinhvien where ten like '%a%') as b
+		gợi ý: tạo ra các tổ hợp tương ứng của 2 subqueries. đây là 1 ví dụ khá ngớ ngẩn, nhưng làm rõ được một số vấn đề 
+		4. biến câu lệnh ở yêu cầu 1.2 thành 1 bảng chứa dữ liệu tạm thời CTE-Common Table Expression (gồm 2 cột tuoi, soluong), từ đó truy vấn số lượng sinh viên theo từng độ tuổi của 2 năm sau
+		gợi ý: with cte ... select tuoi + 2 as twoyearslater, soluong from cte
+		 _________ with cte (tuoi, soluong) as (select tuoi, count(id) as soluong from sinhvien group by tuoi)
+select tuoi + 2 as twoyearslater, soluong from cte
+		5. chạy, giải thích bằng lời khối lệnh sau rồi nhìn trực quan bảng tạm cục bộ đã được tạo ra bằng cách trên ssms, trong menu explorer ngoài cùng bên trái, mở rộng trường Database, mở rộng trường System Databases, mở rộng trường tempdb, mở rộng trường Temporary Table xác nhận rằng nhìn thấy tên bảng tạm vừa tạo ra:
+		CREATE TABLE #dodai (
+			id INT PRIMARY KEY,
+			chieucao int,
+		);
+
+		INSERT INTO dodai (id, chieucao)
+		VALUES
+			(1, 163),
+			(2, 150),
+			(3, 150),
+			(4, 151),
+			(5, 155);
+
+		select a.ten, b.chieucao from sinhvien as a join #dodai as b on a.id = b.id
+		_________ tạo bảng tạm cục bộ chiều cao sinh viên, đổ dữ liệu vào bảng tạm rồi kết hợp bảng SINHVIEN và bảng tạm vừa tạo ra (from sinhvien as a join #dodai as b) tại những bản ghi có cùng id (on a.id = b.id), truy vấn chiều cao và tên tương ứng

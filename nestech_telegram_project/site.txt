@@ -11,4 +11,6 @@ https://docs.pyrogram.org/api/methods/get_chat_history#pyrogram.Client.get_chat_
 
 https://github.com/amiryousefi/telegram-analysis/blob/master/ChannelMessages.py  # telethon
 https://www.youtube.com/watch?v=aU1p-F7gDo4  # telethon
-https://www.youtube.com/watch?v=aoJ-LhzqsdQ  # telethon  # ok
+https://stackoverflow.com/questions/50975793/telegram-get-chat-messages-posts-python-telethon  # done
+	https://stackoverflow.com/questions/67885441/python-telethon-scrape-and-store-telegram-messages  # assync
+	https://docs.telethon.dev/en/stable/basic/signing-in.html

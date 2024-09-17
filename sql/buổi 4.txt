@@ -1,0 +1,17 @@
+các kiến thức đã học trên lớp:
+	hướng dẫn chi tiết các thao tác ssms
+	thử tạo 1 bảng rồi insert dữ liệu bằng code
+	các hàm chuyển đổi chuỗi
+
+
+bài tập về nhà:
+	cách nộp bài: viết ra file txt (hoặc định dạng khác, tùy chọn) từng dòng lệnh, lưu lại rồi nộp
+	https://nguyenvanhieu.vn/bai-tap-sql-giai-bai-test-sql-co-ban-fpt-fsoft-2018/
+		đây là link a dùng trong buổi học lần trước, cũng là bài tập về nhà; như sau:
+		1. Xây dựng database và insert đầy đủ dữ liệu theo hướng dẫn trong link (chú ý xóa hết các dấu ` trong các câu lệnh INSERT INTO)
+		2. làm câu 4 (khuyến khích các bạn làm hết cả 9 câu, đáp án ở cuối cùng, nếu có thắc mắc sẽ thảo luận trong buổi học)
+		3. trả về chuỗi từ kí tự số 2 đến kí tự số 4 ở cột TenDV trong bảng DICH_VU_DI_KEM
+		4. trả về giá phòng, nhưng trả về 60k, 100k thay vì 60.000, 100.000 ở cột GIAPHONG trong bảng phong (gợi ý: kiểu dữ liệu của cột GIAPHONG là decimal, cần chuyển thành chuỗi trước (hàm số 3, mục 4 trong slide))
+		5. thay tất cả chữ "a" bằng chữ "z" ở cột TENKH trong bảng khach_hang
+		6. trả về tháng đặt phòng trong bảng dat_phong
+		7. đọc thêm https://stackoverflow.com/questions/207190/sql-server-string-to-date-conversion

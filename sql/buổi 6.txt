@@ -1,0 +1,42 @@
+các kiến thức đã học trên lớp:
+	giới thiệu về git
+	sql pivot
+ 
+	
+
+bài tập về nhà:
+	cách nộp bài: viết ra file txt (hoặc định dạng khác, tùy chọn) từng dòng lệnh, lưu lại rồi nộp
+	TRỢ GIẢNG GIỮ LẠI CÁC ĐÁP ÁN ĐỨNG SAU CHUỖI _________ ĐỂ CHỮA BÀI
+	vẫn dùng database đã tạo từ bài tập về nhà của buổi trước
+		create database giaoduc
+		use giaoduc
+
+		CREATE TABLE SINHVIEN (
+			id INT PRIMARY KEY,
+			ten VARCHAR(100),
+			tuoi int,
+			khoahoc VARCHAR(100),
+			hocphi int,
+		);
+
+		INSERT INTO SINHVIEN (id, ten, tuoi, khoahoc, hocphi)
+		VALUES
+			(1, 'Hoang', 21, 'CNTT', 4000000),
+			(2, 'Viet', 19, 'DTVT', 3000000),
+			(3, 'Thanh', 18, 'KTDN', 4000000),
+			(4, 'Nhan', 19, 'CK', 4500000),
+			(5, 'Huong', 20, 'TCNH', 5000000);
+	yêu cầu:
+		1. truy vấn các đồng chí số 2, 3, 4, lấy ten làm cột đầu tiên, id làm các cột tiếp theo, ô tương ứng phía dưới hiện tuổi, các ô còn lại để là null
+		gợi ý: select ten, [2], [3], [4] from (...) as ... pivot (... for id in (...)) as ...
+		2. truy vấn các đồng chí số 2, 3, 4, lấy ten làm cột đầu tiên, id làm các cột tiếp theo, ô tương ứng phía dưới hiện học phí, các ô còn lại để là null
+		gợi ý: select ten, [2], [3], [4] from (...) as ... pivot (... for id in (...)) as ...
+		3. giải thích đầu ra của các câu lệnh sai phía dưới:
+select id, ['viet'], ['thanh'], ['nhan'] from 
+(select id, ten, hocphi, khoahoc from sinhvien) as pvtb
+pivot (max(hocphi) for ten in (['viet'], ['thanh'], ['nhan'])) as pvtb_
+select id, 'viet', 'thanh', 'nhan' from 
+(select id, ten, hocphi, khoahoc from sinhvien) as pvtb
+pivot (max(hocphi) for ten in (['viet'], ['thanh'], ['nhan'])) as pvtb_
+		4. truy vấn các đồng chí số 2, 3, 4, lấy id làm cột đầu tiên, tên làm các cột tiếp theo, ô tương ứng phía dưới hiện học phí, các ô còn lại để là null
+		gợi ý: select id, [...], [...], [...] from (...) as ... pivot (... for ten in (...)) as ...
